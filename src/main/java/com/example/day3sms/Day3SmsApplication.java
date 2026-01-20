@@ -11,3 +11,8 @@ public class Day3SmsApplication {
     }
 
 }
+
+//controller --> request
+//service --> logic
+//repository --> database
+//model --> schema
