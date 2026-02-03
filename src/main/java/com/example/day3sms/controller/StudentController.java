@@ -1,7 +1,10 @@
 package com.example.day3sms.controller;
 
+import com.example.day3sms.DTO.StudentRequestDTO;
+import com.example.day3sms.DTO.StudentResponseDTO;
 import com.example.day3sms.model.StudentModel;
 import com.example.day3sms.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,28 +20,40 @@ public class StudentController {
 
     //    Create function API {Add new Student}
 
-    @PostMapping("/add-student")
-    public StudentModel addStudent(@RequestBody StudentModel student){
+//    public StudentModel addStudent(@RequestBody StudentModel student){
+//        return service.addStudent(student);
+//    }
+    @PostMapping("/addstudent")
+    public StudentResponseDTO addStudent(@Valid @RequestBody StudentRequestDTO student){
         return service.addStudent(student);
     }
 
     //    Display Student
     @GetMapping("/students")
-    public List<StudentModel> getAllStudents(){
+    public List<StudentResponseDTO> getAllStudents(){
         return service.getAllStudents();
     }
 
     //    Update Student
+//    public StudentModel updateStudent(@PathVariable String id, @RequestBody StudentModel student){
+//        return service.updateStudent(id, student);
+//    }
+
     @PutMapping("/update/{id}")
-    public StudentModel updateStudent(@PathVariable String id, @RequestBody StudentModel student){
-        return service.updateStudent(id, student);
+    public StudentResponseDTO updateStudent(@PathVariable String id,@RequestBody StudentResponseDTO student){
+        return service.updateStudent(id,student);
     }
 
+
+
     //    Delete Student
+//    public String deleteStudent(@PathVariable String id){
+//        service.deleteStudent(id);
+//        return "Student deleted successfully";
+//    }
     @DeleteMapping("/delete/{id}")
-    public String deleteStudent(@PathVariable String id){
-        service.deleteStudent(id);
-        return "Student deleted successfully";
+    public void delete(@PathVariable String id){
+        service.delete(id);
     }
 
 
